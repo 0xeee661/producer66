@@ -1,6 +1,9 @@
+'use client';
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Search, Filter, Music, ShoppingCart, Play } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 const beats = [
   {
@@ -72,6 +75,9 @@ const beats = [
 ];
 
 export default function BeatsPage() {
+  const t = useTranslations('beatsPage');
+  const tBeats = useTranslations('beats');
+
   return (
     <main className="min-h-screen bg-[#050507] text-white selection:bg-red-600 selection:text-white">
       <Navbar />
@@ -83,10 +89,10 @@ export default function BeatsPage() {
             <span className="mr-2">🎵</span> Premium Beat Store
           </div>
           <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Browse <span className="text-red-600">Beats</span>
+            {t('title')}
           </h1>
           <p className="text-gray-400 text-lg font-medium max-w-2xl mx-auto">
-            High-quality beats for your next project. Instant download and unlimited use.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -96,14 +102,14 @@ export default function BeatsPage() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
             <input
               type="text"
-              placeholder="Search beats by name..."
+              placeholder={t('searchPlaceholder')}
               className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-red-600/50 transition-colors"
             />
           </div>
           <div className="relative min-w-[200px]">
             <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
             <select className="w-full appearance-none bg-black/50 border border-white/10 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-red-600/50 transition-colors cursor-pointer">
-              <option>All Genres</option>
+              <option>{t('allGenres')}</option>
               <option>Trap</option>
               <option>R&B</option>
               <option>Hip Hop</option>
@@ -116,7 +122,7 @@ export default function BeatsPage() {
         </div>
 
         <div className="text-gray-500 text-sm font-medium mb-8">
-          Showing 6 beats
+          {t('showing', { count: 6 })}
         </div>
 
         {/* Beats Grid */}
@@ -148,7 +154,7 @@ export default function BeatsPage() {
                 <p className="text-gray-400 text-xs mb-4 line-clamp-2">{beat.description}</p>
 
                 <div className="flex items-center gap-4 text-xs text-gray-500 font-bold uppercase tracking-wider mb-4">
-                  <span>{beat.bpm} BPM</span>
+                  <span>{beat.bpm} {tBeats('bpm')}</span>
                   <span className="w-1 h-1 rounded-full bg-gray-700" />
                   <span>{beat.key}</span>
                 </div>
@@ -165,7 +171,7 @@ export default function BeatsPage() {
                   <span className="text-2xl font-black text-red-500">${beat.price}</span>
                   <button className="flex items-center gap-2 px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wide text-white transition-colors group-hover:bg-red-600 group-hover:border-red-600">
                     <ShoppingCart size={14} />
-                    Purchase
+                    {tBeats('purchase')}
                   </button>
                 </div>
               </div>

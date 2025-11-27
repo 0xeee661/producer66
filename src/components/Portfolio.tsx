@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Music, ChevronDown } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 type Category = 'All Categories' | 'Full Album' | 'Mixing' | 'Production' | 'Underdub' | 'Mastering';
 
@@ -58,6 +59,7 @@ const portfolioData: PortfolioItem[] = [
 ];
 
 export default function Portfolio() {
+  const t = useTranslations('portfolio');
   const [selectedCategory, setSelectedCategory] = useState<Category>('All Categories');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -85,13 +87,13 @@ export default function Portfolio() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Music className="text-red-600" size={20} />
-            <p className="text-sm text-gray-400 uppercase tracking-widest">Our Work</p>
+            <p className="text-sm text-gray-400 uppercase tracking-widest">{t('subtitle')}</p>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-            Portfolio
+            {t('title')}
           </h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore our latest projects and collaborations with top artists.
+            {t('subtitle')}
           </p>
         </div>
 

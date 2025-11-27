@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "beats": "Beats",
+    "services": "Servizi",
+    "portfolio": "Portfolio",
+    "bookNow": "Prenota Ora"
+  },
+  "hero": {
+    "title": "PRODUTTORE",
+    "subtitle": "Produttore Musicale e Creatore di Beat",
+    "description": "Creazione di beat unici e servizi di produzione professionale per artisti in tutto il mondo",
+    "cta": "Esplora i Miei Beat"
+  },
+  "beats": {
+    "title": "Ultimi Beat",
+    "viewAll": "Vedi Tutti i Beat",
+    "bpm": "BPM",
+    "key": "Chiave",
+    "price": "Prezzo",
+    "play": "Riproduci",
+    "purchase": "Acquista"
+  },
+  "services": {
+    "title": "Servizi",
+    "subtitle": "Servizi professionali di produzione musicale",
+    "mixing": {
+      "title": "Missaggio e Mastering",
+      "description": "Servizi professionali di missaggio e mastering per rendere le tue tracce pronte per l'industria"
+    },
+    "production": {
+      "title": "Produzione Musicale",
+      "description": "Produzione musicale completa dall'inizio alla fine, su misura per il tuo suono unico"
+    },
+    "beatmaking": {
+      "title": "Beat Personalizzati",
+      "description": "Beat su misura creati specificamente per il tuo progetto e stile"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Il mio lavoro recente e collaborazioni",
+    "viewProject": "Vedi Progetto"
+  },
+  "footer": {
+    "copyright": "Tutti i diritti riservati",
+    "followMe": "Seguimi",
+    "contact": "Contatto"
+  },
+  "testimonials": {
+    "title": "Cosa dicono gli artisti",
+    "subtitle": "Non fidarti solo della nostra parola. Ascolta gli artisti con cui abbiamo lavorato.",
+    "reviews": {
+      "1": "Questo team di produzione ha trasformato completamente il mio suono. L'attenzione ai dettagli e l'input creativo erano esattamente ciò di cui avevo bisogno per portare la mia carriera al livello successivo. Altamente raccomandato!",
+      "2": "Veloce, professionale e incredibilmente talentuoso. Le mie tracce suonano pronte per la radio e ho già firmato un accordo di distribuzione grazie alla qualità di questi mix.",
+      "3": "I migliori beat del gioco, senza dubbio. Ogni strumentale ha un'atmosfera unica e gli stem sono sempre perfettamente organizzati. Un sogno lavorare con questo produttore."
+    }
+  },
+  "beatsPage": {
+    "title": "Sfoglia Beats",
+    "subtitle": "Beats di alta qualità per il tuo prossimo progetto. Download istantaneo e uso illimitato.",
+    "searchPlaceholder": "Cerca beats per nome...",
+    "allGenres": "Tutti i generi",
+    "showing": "Mostrando {count} beats"
+  },
+  "servicesPage": {
+    "title": "I Nostri Servizi",
+    "subtitle": "Servizi di produzione standard del settore su misura per dare vita alla tua musica.",
+    "startingAt": "A partire da",
+    "bookNow": "Prenota Ora"
+  }
+}

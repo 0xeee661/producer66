@@ -1,39 +1,44 @@
-import { Music2, Mic2, Sliders } from 'lucide-react';
+'use client';
 
-const services = [
-  {
-    icon: Music2,
-    title: "Beat Production",
-    desc: "Custom exclusive beats tailored to your style. You keep 100% of the royalties and rights.",
-    price: "$500",
-    action: "Get Started"
-  },
-  {
-    icon: Mic2,
-    title: "Vocal Mixing",
-    desc: "Professional vocal tuning, alignment, and mixing to make your voice sit perfectly in the mix.",
-    price: "$300",
-    action: "Learn More"
-  },
-  {
-    icon: Sliders,
-    title: "Full Mix & Master",
-    desc: "Complete mixing and mastering service to give your tracks that radio-ready polish and loudness.",
-    price: "$800",
-    action: "Book Now"
-  }
-];
+import { Music2, Mic2, Sliders } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function ServicesSection() {
+  const t = useTranslations('services');
+
+  const services = [
+    {
+      icon: Music2,
+      title: t('beatmaking.title'),
+      desc: t('beatmaking.description'),
+      price: "$500",
+      action: "Get Started"
+    },
+    {
+      icon: Mic2,
+      title: t('production.title'),
+      desc: t('production.description'),
+      price: "$300",
+      action: "Learn More"
+    },
+    {
+      icon: Sliders,
+      title: t('mixing.title'),
+      desc: t('mixing.description'),
+      price: "$800",
+      action: "Book Now"
+    }
+  ];
+
   return (
     <section className="py-24 bg-black">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Professional <span className="text-red-600">Services</span>
+            {t('title')} <span className="text-red-600">Pro</span>
           </h2>
           <p className="text-gray-400 text-sm font-medium max-w-xl mx-auto">
-            Take your music to the next level with our industry-standard production and engineering services.
+            {t('subtitle')}
           </p>
         </div>
 

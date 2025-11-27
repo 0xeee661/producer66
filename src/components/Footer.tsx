@@ -1,7 +1,13 @@
+'use client';
+
 import { Music, Instagram, Twitter, Youtube, Mail } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const navT = useTranslations('nav');
+
   return (
     <footer className="bg-black border-t border-white/5 pt-20 pb-10">
       <div className="max-w-6xl mx-auto px-6">
@@ -14,7 +20,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-white tracking-wide">PRODUCER.</span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs mb-8">
-              Premium beats, mixing, and mastering services for artists who want to stand out. Elevate your sound today.
+              {t('copyright')}
             </p>
             <div className="flex gap-4">
               <Link href="#" className="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all">
@@ -33,17 +39,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Quick Links</h4>
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">{navT('home')}</h4>
             <ul className="space-y-4">
-              <li><Link href="#" className="text-gray-500 hover:text-red-500 text-sm transition-colors">Beats</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-red-500 text-sm transition-colors">Services</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-red-500 text-sm transition-colors">Licensing</Link></li>
-              <li><Link href="#" className="text-gray-500 hover:text-red-500 text-sm transition-colors">Contact</Link></li>
+              <li><Link href="/beats" className="text-gray-500 hover:text-red-500 text-sm transition-colors">{navT('beats')}</Link></li>
+              <li><Link href="/services" className="text-gray-500 hover:text-red-500 text-sm transition-colors">{navT('services')}</Link></li>
+              <li><Link href="/portfolio" className="text-gray-500 hover:text-red-500 text-sm transition-colors">{navT('portfolio')}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Contact</h4>
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">{t('contact')}</h4>
             <ul className="space-y-4">
               <li className="text-gray-500 text-sm">info@producer.com</li>
               <li className="text-gray-500 text-sm">+1 (555) 123-4567</li>
@@ -53,7 +58,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-600 text-xs">© 2024 Producer. All rights reserved.</p>
+          <p className="text-gray-600 text-xs">© 2024 Producer. {t('copyright')}</p>
           <div className="flex gap-6">
             <Link href="#" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">Privacy Policy</Link>
             <Link href="#" className="text-gray-600 hover:text-gray-400 text-xs transition-colors">Terms of Service</Link>

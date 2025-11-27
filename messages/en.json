@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "beats": "Beats",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "title": "PRODUCER",
+    "subtitle": "Music Producer & Beat Maker",
+    "description": "Creating unique beats and professional production services for artists worldwide",
+    "cta": "Explore My Beats"
+  },
+  "beats": {
+    "title": "Latest Beats",
+    "viewAll": "View All Beats",
+    "bpm": "BPM",
+    "key": "Key",
+    "price": "Price",
+    "play": "Play",
+    "purchase": "Purchase"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Professional music production services",
+    "mixing": {
+      "title": "Mixing & Mastering",
+      "description": "Professional mixing and mastering services to make your tracks sound industry-ready"
+    },
+    "production": {
+      "title": "Music Production",
+      "description": "Full music production from start to finish, tailored to your unique sound"
+    },
+    "beatmaking": {
+      "title": "Custom Beats",
+      "description": "Custom-made beats crafted specifically for your project and style"
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "My recent work and collaborations",
+    "viewProject": "View Project"
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "followMe": "Follow Me",
+    "contact": "Contact"
+  },
+  "testimonials": {
+    "title": "What Artists Say",
+    "subtitle": "Don't just take our word for it. Hear from the artists we've worked with.",
+    "reviews": {
+      "1": "This production team has completely transformed my sound. The attention to detail and creative input was exactly what I needed to take my career to the next level. Highly recommended!",
+      "2": "Fast, professional, and incredibly talented. My tracks sound radio-ready and I've already signed a distribution deal thanks to the quality of these mixes.",
+      "3": "The best beats in the game, hands down. Every instrumental has a unique vibe and the stems are always perfectly organized. A producer's dream to work with."
+    }
+  },
+  "beatsPage": {
+    "title": "Browse Beats",
+    "subtitle": "High-quality beats for your next project. Instant download and unlimited use.",
+    "searchPlaceholder": "Search beats by name...",
+    "allGenres": "All Genres",
+    "showing": "Showing {count} beats"
+  },
+  "servicesPage": {
+    "title": "Our Services",
+    "subtitle": "Industry-standard production services tailored to bring your music to life.",
+    "startingAt": "Starting at",
+    "bookNow": "Book Now"
+  }
+}

@@ -1,36 +1,41 @@
-import { Quote } from 'lucide-react';
+'use client';
 
-const reviews = [
-  {
-    text: "This production team has completely transformed my sound. The attention to detail and creative input was exactly what I needed to take my career to the next level. Highly recommended!",
-    author: "Marcus Johnson",
-    role: "R&B Artist",
-    initials: "MJ"
-  },
-  {
-    text: "Fast, professional, and incredibly talented. My tracks sound radio-ready and I've already signed a distribution deal thanks to the quality of these mixes.",
-    author: "Sarah Davis",
-    role: "Pop Singer",
-    initials: "SD"
-  },
-  {
-    text: "The best beats in the game, hands down. Every instrumental has a unique vibe and the stems are always perfectly organized. A producer's dream to work with.",
-    author: "DJ Flexx",
-    role: "Music Producer",
-    initials: "DF"
-  }
-];
+import { Quote } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function Testimonials() {
+  const t = useTranslations('testimonials');
+
+  const reviews = [
+    {
+      text: t('reviews.1'),
+      author: "Marcus Johnson",
+      role: "R&B Artist",
+      initials: "MJ"
+    },
+    {
+      text: t('reviews.2'),
+      author: "Sarah Davis",
+      role: "Pop Singer",
+      initials: "SD"
+    },
+    {
+      text: t('reviews.3'),
+      author: "DJ Flexx",
+      role: "Music Producer",
+      initials: "DF"
+    }
+  ];
+
   return (
     <section className="py-24 bg-gradient-to-b from-[#050507] to-[#020203]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            What <span className="text-red-600">Artists Say</span>
+            {t('title')}
           </h2>
           <p className="text-gray-400 text-sm font-medium">
-            Don&apos;t just take our word for it. Hear from the artists we&apos;ve worked with.
+            {t('subtitle')}
           </p>
         </div>
 

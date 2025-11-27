@@ -1,6 +1,10 @@
+'use client';
+
 import { Play } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function Hero() {
+  const t = useTranslations('hero');
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 bg-[#050507] overflow-hidden">
       {/* Background Glows */}

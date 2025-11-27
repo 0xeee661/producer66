@@ -1,71 +1,77 @@
+'use client';
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Music2, Mic2, Headphones, Disc, Clock, Check, Calendar } from "lucide-react";
-
-const services = [
-  {
-    icon: Music2,
-    title: "Beat Production",
-    duration: "5-7 days",
-    description: "Custom beat production tailored to your style. We'll work with you from concept to final product, creating a unique sound that brings your vision to life.",
-    features: [
-      "Unlimited revisions",
-      "Stems included",
-      "Commercial rights",
-      "Custom sound design",
-      "Mix-ready delivery"
-    ],
-    price: 500,
-    iconBg: "bg-red-600"
-  },
-  {
-    icon: Mic2,
-    title: "Vocal Mixing",
-    duration: "2-3 days",
-    description: "Professional vocal mixing that makes your voice shine. We'll enhance clarity, add depth, and ensure your vocals sit perfectly in the mix.",
-    features: [
-      "Pitch correction",
-      "Vocal tuning",
-      "De-essing",
-      "Compression & EQ",
-      "Effects processing"
-    ],
-    price: 300,
-    iconBg: "bg-red-600"
-  },
-  {
-    icon: Headphones,
-    title: "Full Mix & Master",
-    duration: "5-8 days",
-    description: "Complete mixing and mastering service for your entire track. Industry-standard processing that ensures your music sounds professional on all platforms.",
-    features: [
-      "Full track mixing",
-      "Mastering for streaming",
-      "Stem mastering",
-      "Reference matching",
-      "Unlimited revisions"
-    ],
-    price: 800,
-    iconBg: "bg-red-600"
-  },
-  {
-    icon: Disc,
-    title: "Mastering Only",
-    duration: "1-2 days",
-    description: "Professional mastering to give your track that final polish. We'll ensure your music translates well across all playback systems.",
-    features: [
-      "Loudness optimization",
-      "Stereo enhancement",
-      "Final EQ & compression",
-      "Format conversion",
-      "Fast turnaround"
-    ],
-    price: 150,
-    iconBg: "bg-red-600"
-  }
-];
+import { useTranslations } from 'next-intl';
 
 export default function ServicesPage() {
+  const t = useTranslations('servicesPage');
+  const tServices = useTranslations('services');
+
+  const services = [
+    {
+      icon: Music2,
+      title: tServices('beatmaking.title'),
+      duration: "5-7 days",
+      description: tServices('beatmaking.description'),
+      features: [
+        "Unlimited revisions",
+        "Stems included",
+        "Commercial rights",
+        "Custom sound design",
+        "Mix-ready delivery"
+      ],
+      price: 500,
+      iconBg: "bg-red-600"
+    },
+    {
+      icon: Mic2,
+      title: "Vocal Mixing",
+      duration: "2-3 days",
+      description: "Professional vocal mixing that makes your voice shine. We'll enhance clarity, add depth, and ensure your vocals sit perfectly in the mix.",
+      features: [
+        "Pitch correction",
+        "Vocal tuning",
+        "De-essing",
+        "Compression & EQ",
+        "Effects processing"
+      ],
+      price: 300,
+      iconBg: "bg-red-600"
+    },
+    {
+      icon: Headphones,
+      title: tServices('mixing.title'),
+      duration: "5-8 days",
+      description: tServices('mixing.description'),
+      features: [
+        "Full track mixing",
+        "Mastering for streaming",
+        "Stem mastering",
+        "Reference matching",
+        "Unlimited revisions"
+      ],
+      price: 800,
+      iconBg: "bg-red-600"
+    },
+    {
+      icon: Disc,
+      title: "Mastering Only",
+      duration: "1-2 days",
+      description: "Professional mastering to give your track that final polish. We'll ensure your music translates well across all playback systems.",
+      features: [
+        "Loudness optimization",
+        "Stereo enhancement",
+        "Final EQ & compression",
+        "Format conversion",
+        "Fast turnaround"
+      ],
+      price: 150,
+      iconBg: "bg-red-600"
+    }
+  ];
+
   return (
     <main className="min-h-screen bg-black text-white selection:bg-red-600 selection:text-white">
       <Navbar />
@@ -78,10 +84,10 @@ export default function ServicesPage() {
             Professional Services
           </div>
           <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Our <span className="text-red-600">Services</span>
+            {t('title')}
           </h1>
           <p className="text-gray-400 text-lg font-medium max-w-2xl mx-auto">
-            Industry-standard production services tailored to bring your music to life.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -125,12 +131,12 @@ export default function ServicesPage() {
               {/* Price & CTA */}
               <div className="flex items-center justify-between pt-6 border-t border-white/10">
                 <div>
-                  <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-1">Starting at</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-1">{t('startingAt')}</div>
                   <div className="text-3xl font-black text-red-500">${service.price}</div>
                 </div>
                 <button className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold uppercase tracking-widest transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg shadow-red-900/30">
                   <Calendar size={14} />
-                  Book Now
+                  {t('bookNow')}
                 </button>
               </div>
             </div>

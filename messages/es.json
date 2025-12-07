@@ -68,5 +68,51 @@
     "subtitle": "Servicios de producción estándar de la industria adaptados para dar vida a tu música.",
     "startingAt": "Desde",
     "bookNow": "Reservar Ahora"
+  },
+  "checkout": {
+    "title": "Finalizar Compra",
+    "paymentMethod": "Método de Pago",
+    "reviewItems": "Revisar Artículos y Envío",
+    "creditCard": "Tarjeta de Crédito o Débito",
+    "cardNumber": "Número de tarjeta",
+    "nameOnCard": "Nombre en la tarjeta",
+    "expiry": "MM/AA",
+    "cvc": "CVC",
+    "usePaymentMethod": "Usar este método de pago",
+    "placeOrder": "Realizar pedido",
+    "processing": "Procesando...",
+    "orderSummary": "Resumen del Pedido",
+    "items": "Artículos",
+    "shippingHandling": "Envío y manejo",
+    "totalBeforeTax": "Total antes de impuestos",
+    "estimatedTax": "Impuesto estimado",
+    "orderTotal": "Total del Pedido",
+    "shippingCostInfo": "¿Cómo se calculan los costos de envío?",
+    "shippingCostDesc": "Los miembros Prime disfrutan de envío gratuito en millones de artículos elegibles.",
+    "privacyNotice": "Al realizar tu pedido, aceptas el aviso de privacidad y las condiciones de uso de Producer66.",
+    "emptyCart": "Tu carrito está vacío",
+    "goBack": "Volver a la tienda",
+    "errors": {
+      "cardNumber": "Se requiere un número de tarjeta válido",
+      "cardName": "Se requiere el nombre en la tarjeta",
+      "expiry": "Se requiere una fecha de vencimiento válida (MM/AA)",
+      "cvc": "Se requiere un CVC válido"
+    },
+    "estimatedDelivery": "Entrega Estimada: Descarga Inmediata"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "subtitle": "Gestiona tu cuenta y ver tus pedidos",
+    "synced": "Datos sincronizados desde la Base de Datos",
+    "notSynced": "Usuario no encontrado en la Base de Datos",
+    "id": "ID de Usuario",
+    "email": "Correo",
+    "name": "Nombre",
+    "username": "Usuario",
+    "joined": "Unido",
+    "dbStatus": "Estado de Base de Datos",
+    "dbConnected": "Conectado y Sincronizado",
+    "recentOrders": "Pedidos Recientes",
+    "noOrders": "No se encontraron pedidos"
   }
 }

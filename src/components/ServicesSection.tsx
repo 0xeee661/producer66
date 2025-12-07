@@ -2,6 +2,7 @@
 
 import { Music2, Mic2, Sliders } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useUser, useClerk } from '@clerk/nextjs';
 
 export default function ServicesSection() {
   const t = useTranslations('services');
@@ -30,10 +31,31 @@ export default function ServicesSection() {
     }
   ];
 
+  /* Hook para auth */
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
+
+  const handleServiceClick = (action: string) => {
+    // Requerir login para cualquiera de estas acciones de servicio
+    if (!isSignedIn) {
+      openSignIn();
+      return;
+    }
+
+    // Si la acción es reservar (Book Now) u otras
+    if (action === "Book Now") {
+      console.log("Proceeding to Book Now...");
+    } else if (action === "Get Started") {
+      console.log("Proceeding to Get Started...");
+    }
+    // TODO: Implementar navegación o modal de servicio real
+  };
+
   return (
     <section className="py-24 bg-black">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-20">
+          {/* ... title ... */}
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             {t('title')} <span className="text-red-600">Pro</span>
           </h2>
@@ -59,7 +81,10 @@ export default function ServicesSection() {
                   <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Starting at</span>
                   <span className="text-xl font-black text-red-500">{service.price}</span>
                 </div>
-                <button className="text-xs font-bold text-white uppercase tracking-widest hover:text-red-500 transition-colors flex items-center gap-1">
+                <button
+                  onClick={() => handleServiceClick(service.action)}
+                  className="text-xs font-bold text-white uppercase tracking-widest hover:text-red-500 transition-colors flex items-center gap-1 cursor-pointer"
+                >
                   {service.action} <span className="text-red-600">→</span>
                 </button>
               </div>

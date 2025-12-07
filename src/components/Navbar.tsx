@@ -4,6 +4,8 @@ import { Music, Globe, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link, useRouter, usePathname } from '@/i18n/routing';
+import CartTrigger from './CartTrigger';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 
 type Locale = 'en' | 'es' | 'it';
@@ -84,8 +86,44 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right side - Language selector and Book Now */}
+        {/* Right side - Auth, Cart, Language */}
         <div className="flex items-center gap-4">
+
+          {/* Authentication Buttons */}
+          <div className="hidden sm:flex items-center gap-4">
+            <SignedOut>
+              <Link
+                href="/sign-in"
+                className="text-white hover:text-red-500 px-2 text-xs font-bold uppercase tracking-widest transition-colors"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/sign-up"
+                className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded text-xs font-bold uppercase tracking-widest transition-colors"
+              >
+                Sign Up
+              </Link>
+            </SignedOut>
+
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-8 h-8",
+                    userButtonPopoverCard: "bg-zinc-900 border border-zinc-800",
+                    userButtonPopoverText: "text-white",
+                    userButtonPopoverActionButton: "text-zinc-300 hover:text-white hover:bg-zinc-800",
+                    userButtonPopoverActionButtonText: "text-zinc-300",
+                    userButtonPopoverFooter: "hidden"
+                  }
+                }}
+              />
+            </SignedIn>
+          </div>
+
+          <CartTrigger />
+
           {/* Language Selector */}
           <div className="relative">
             <button
@@ -122,54 +160,81 @@ export default function Navbar() {
             )}
           </div>
 
-          <button className="hidden sm:block bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded text-xs font-bold uppercase tracking-widest transition-colors">
-            {t('bookNow')}
-          </button>
+
         </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-black/95 border-t border-white/5">
-          <div className="flex flex-col px-6 py-4 space-y-4">
-            <Link
-              href="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/') ? 'text-red-600' : 'text-gray-400 hover:text-white'
-                }`}
-            >
-              {t('home')}
-            </Link>
-            <Link
-              href="/beats"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/beats') ? 'text-red-600' : 'text-gray-400 hover:text-white'
-                }`}
-            >
-              {t('beats')}
-            </Link>
-            <Link
-              href="/services"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/services') ? 'text-red-600' : 'text-gray-400 hover:text-white'
-                }`}
-            >
-              {t('services')}
-            </Link>
-            <Link
-              href="/portfolio"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/portfolio') ? 'text-red-600' : 'text-gray-400 hover:text-white'
-                }`}
-            >
-              {t('portfolio')}
-            </Link>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors w-full sm:hidden">
-              {t('bookNow')}
-            </button>
+      {
+        isMobileMenuOpen && (
+          <div className="md:hidden bg-black/95 border-t border-white/5">
+            <div className="flex flex-col px-6 py-4 space-y-4">
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/') ? 'text-red-600' : 'text-gray-400 hover:text-white'
+                  }`}
+              >
+                {t('home')}
+              </Link>
+              <Link
+                href="/beats"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/beats') ? 'text-red-600' : 'text-gray-400 hover:text-white'
+                  }`}
+              >
+                {t('beats')}
+              </Link>
+              <Link
+                href="/services"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/services') ? 'text-red-600' : 'text-gray-400 hover:text-white'
+                  }`}
+              >
+                {t('services')}
+              </Link>
+              <Link
+                href="/portfolio"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-widest transition-colors py-2 ${isActive('/portfolio') ? 'text-red-600' : 'text-gray-400 hover:text-white'
+                  }`}
+              >
+                {t('portfolio')}
+              </Link>
+
+              {/* Mobile Auth Buttons */}
+              <SignedOut>
+                <Link
+                  href="/sign-in"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white hover:text-red-500 px-4 py-3 text-xs font-bold uppercase tracking-widest transition-colors text-center border border-white/20 rounded"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/sign-up"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded text-xs font-bold uppercase tracking-widest transition-colors w-full text-center"
+                >
+                  Sign Up
+                </Link>
+              </SignedOut>
+
+              <SignedIn>
+                <div className="flex items-center justify-center py-2">
+                  <UserButton
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-10 h-10",
+                      }
+                    }}
+                  />
+                </div>
+              </SignedIn>
+            </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )
+      }
+    </nav >
   );
 }

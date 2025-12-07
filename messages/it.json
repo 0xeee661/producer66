@@ -68,5 +68,36 @@
     "subtitle": "Servizi di produzione standard del settore su misura per dare vita alla tua musica.",
     "startingAt": "A partire da",
     "bookNow": "Prenota Ora"
+  },
+  "checkout": {
+    "title": "Cassa",
+    "paymentMethod": "Metodo di Pagamento",
+    "reviewItems": "Rivedi Articoli e Spedizione",
+    "creditCard": "Carta di Credito o Debito",
+    "cardNumber": "Numero di carta",
+    "nameOnCard": "Nome sulla carta",
+    "expiry": "MM/AA",
+    "cvc": "CVC",
+    "usePaymentMethod": "Usa questo metodo di pagamento",
+    "placeOrder": "Effettua l'ordine",
+    "processing": "Elaborazione...",
+    "orderSummary": "Riepilogo Ordine",
+    "items": "Articoli",
+    "shippingHandling": "Spedizione e gestione",
+    "totalBeforeTax": "Totale prima delle tasse",
+    "estimatedTax": "Tasse stimate da riscuotere",
+    "orderTotal": "Totale Ordine",
+    "shippingCostInfo": "Come vengono calcolati i costi di spedizione?",
+    "shippingCostDesc": "I membri Prime godono della spedizione gratuita su milioni di articoli idonei.",
+    "privacyNotice": "Effettuando l'ordine, accetti l'informativa sulla privacy e le condizioni d'uso di Producer66.",
+    "emptyCart": "Il tuo carrello è vuoto",
+    "goBack": "Torna al negozio",
+    "errors": {
+      "cardNumber": "È richiesto un numero di carta valido",
+      "cardName": "È richiesto il nome sulla carta",
+      "expiry": "È richiesta una data di scadenza valida (MM/AA)",
+      "cvc": "È richiesto un CVC valido"
+    },
+    "estimatedDelivery": "Consegna Stimata: Download Immediato"
   }
 }

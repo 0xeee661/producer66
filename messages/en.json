@@ -68,5 +68,51 @@
     "subtitle": "Industry-standard production services tailored to bring your music to life.",
     "startingAt": "Starting at",
     "bookNow": "Book Now"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "paymentMethod": "Payment Method",
+    "reviewItems": "Review Items and Shipping",
+    "creditCard": "Credit or Debit Card",
+    "cardNumber": "Card number",
+    "nameOnCard": "Name on card",
+    "expiry": "MM/YY",
+    "cvc": "CVC",
+    "usePaymentMethod": "Use this payment method",
+    "placeOrder": "Place your order",
+    "processing": "Processing...",
+    "orderSummary": "Order Summary",
+    "items": "Items",
+    "shippingHandling": "Shipping & handling",
+    "totalBeforeTax": "Total before tax",
+    "estimatedTax": "Estimated tax to be collected",
+    "orderTotal": "Order Total",
+    "shippingCostInfo": "How are shipping costs calculated?",
+    "shippingCostDesc": "Prime members enjoy free shipping on millions of eligible items.",
+    "privacyNotice": "By placing your order, you agree to Producer66's privacy notice and conditions of use.",
+    "emptyCart": "Your Cart is Empty",
+    "goBack": "Go back to shop",
+    "errors": {
+      "cardNumber": "Valid card number is required",
+      "cardName": "Name on card is required",
+      "expiry": "Valid expiry date is required (MM/YY)",
+      "cvc": "Valid CVC is required"
+    },
+    "estimatedDelivery": "Estimated Delivery: Immediate Download"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your account and view your orders",
+    "synced": "Data synced from Database",
+    "notSynced": "User not found in Database",
+    "id": "User ID",
+    "email": "Email",
+    "name": "Name",
+    "username": "Username",
+    "joined": "Joined",
+    "dbStatus": "Database Status",
+    "dbConnected": "Connected & Synced",
+    "recentOrders": "Recent Orders",
+    "noOrders": "No orders found"
   }
 }

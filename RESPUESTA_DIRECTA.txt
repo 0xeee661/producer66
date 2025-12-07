@@ -1,0 +1,120 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔴 PROBLEMA ENCONTRADO - RESPUESTA DIRECTA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ NO HAY SERVIDOR CORRIENDO EN PUERTO 3000
+
+Esta es la razón EXACTA por la que NO ves los console.log:
+
+  ❌ Next.js no está ejecutándose
+  ❌ El código del webhook nunca se ejecuta
+  ❌ Los console.log no pueden aparecer
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ SOLUCIÓN (3 PASOS SIMPLES)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PASO 1: Abrir una Terminal
+---------------------------
+- Abre una nueva ventana de terminal
+- No uses esta terminal, abre una NUEVA
+
+PASO 2: Iniciar el Servidor
+----------------------------
+En la nueva terminal, ejecuta:
+
+    cd /Users/esauguerra/Desktop/thundev/producer66
+    npm run dev
+
+Espera a ver:
+
+    ✓ Ready on http://localhost:3000
+
+PASO 3: Dejar la Terminal Abierta
+----------------------------------
+⚠️  MUY IMPORTANTE:
+
+  • NO CIERRES esa terminal
+  • Los console.log aparecerán AHÍ
+  • Esa es la única terminal donde verás los logs del webhook
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🧪 VERIFICAR QUE FUNCIONA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de iniciar el servidor (Paso 2):
+
+1. En OTRA TERMINAL DIFERENTE, ejecuta:
+
+    cd /Users/esauguerra/Desktop/thundev/producer66
+    ./quick-check.sh
+
+2. Mira de vuelta a la PRIMERA terminal (donde corre npm run dev)
+
+3. Deberías ver NUEVAS líneas que aparecieron:
+
+    🚀 ============================================
+    🚀 WEBHOOK CLERK - INICIO DE EJECUCIÓN
+    🚀 Timestamp: 2025-12-01T...
+    🚀 ============================================
+    📋 Headers recibidos:
+      - svix-id: null
+      - svix-timestamp: null
+      - svix-signature: ❌ ausente
+    ...
+
+4. Si ves esos logs = ✅ EL WEBHOOK FUNCIONA
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📍 DÓNDE APARECEN LOS LOGS (EXPLICACIÓN SIMPLE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Los console.log() del webhook son logs de SERVIDOR, NO de navegador.
+
+✅ APARECEN EN:
+  → La terminal donde ejecutaste "npm run dev"
+  → Solo ahí, en ninguna otra parte
+
+❌ NO APARECEN EN:
+  → El navegador (Chrome DevTools) ❌
+  → Otras terminales diferentes ❌
+  → VS Code Debug Console ❌
+  → Archivos .log ❌
+
+Es como si tuvieras dos mundos separados:
+  • Código del cliente (navegador) → console.log en DevTools
+  • Código del servidor → console.log en terminal de npm run dev
+
+El webhook es código de SERVIDOR, por eso los logs están en la terminal.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🎯 RESUMEN EJECUTIVO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problema:
+  NO ves console.log porque NO hay servidor corriendo
+
+Solución:
+  1. Abre terminal
+  2. npm run dev
+  3. Deja esa terminal abierta
+  4. Los logs aparecen AHÍ
+
+Siguiente paso (después de ver los logs):
+  Configurar webhook en Clerk Dashboard
+  (Lee DIAGNOSTICO_RESUMEN.md)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🚀 COMANDOS RÁPIDOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Terminal 1: Iniciar servidor
+npm run dev
+
+# Terminal 2: Verificar que funciona
+./quick-check.sh
+
+# Leer documentación completa
+cat POR_QUE_NO_VEO_LOGS.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

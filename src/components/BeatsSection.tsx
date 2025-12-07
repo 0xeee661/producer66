@@ -3,10 +3,12 @@
 import { Play, ShoppingCart } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import AddToCartButton from './AddToCartButton';
+
 const beats = [
-  { id: 1, title: "Dark Nights", bpm: "140 BPM", key: "C# Minor", price: 29.99, tag: "Free" },
-  { id: 2, title: "Summer Waves", bpm: "95 BPM", key: "A Major", price: 34.99, tag: "Hot" },
-  { id: 3, title: "Street Dreams", bpm: "128 BPM", key: "F Minor", price: 24.99, tag: "New" },
+  { id: "1", title: "Dark Nights", bpm: "140 BPM", key: "C# Minor", price: 29.99, tag: "Free" },
+  { id: "2", title: "Summer Waves", bpm: "95 BPM", key: "A Major", price: 34.99, tag: "Hot" },
+  { id: "3", title: "Street Dreams", bpm: "128 BPM", key: "F Minor", price: 24.99, tag: "New" },
 ];
 
 export default function BeatsSection() {
@@ -51,10 +53,10 @@ export default function BeatsSection() {
 
                 <div className="flex items-center justify-between">
                   <span className="text-xl font-black text-red-500">${beat.price}</span>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wide text-white transition-colors">
-                    <ShoppingCart size={14} />
-                    {t('purchase')}
-                  </button>
+                  <AddToCartButton
+                    beat={beat}
+                    className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wide text-white transition-colors"
+                  />
                 </div>
               </div>
             </div>

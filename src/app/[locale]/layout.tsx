@@ -4,6 +4,10 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { CartProvider } from '@/context/CartContext';
+import CartSidebar from '@/components/CartSidebar';
+import { ClerkProvider } from '@clerk/nextjs';
+import UserSync from '@/components/UserSync';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -51,9 +55,15 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
-        </NextIntlClientProvider>
+        <ClerkProvider>
+          <UserSync />
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            <CartProvider>
+              {children}
+              <CartSidebar />
+            </CartProvider>
+          </NextIntlClientProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

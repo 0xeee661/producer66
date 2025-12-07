@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Search, Filter, Music, ShoppingCart, Play } from "lucide-react";
 import { useTranslations } from 'next-intl';
+import { useCart } from '@/context/CartContext';
+import { useUser, useClerk } from '@clerk/nextjs';
 
 const beats = [
   {
@@ -77,6 +79,25 @@ const beats = [
 export default function BeatsPage() {
   const t = useTranslations('beatsPage');
   const tBeats = useTranslations('beats');
+
+  const { addToCart } = useCart();
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
+
+  const handlePurchase = (beat: typeof beats[0]) => {
+    if (!isSignedIn) {
+      openSignIn();
+      return;
+    }
+
+    addToCart({
+      id: beat.id.toString(),
+      title: beat.title,
+      price: beat.price,
+      image: undefined, // Opcional, si tienes imagen
+      producer: "Producer66" // Opcional
+    });
+  };
 
   return (
     <main className="min-h-screen bg-[#050507] text-white selection:bg-red-600 selection:text-white">
@@ -169,7 +190,14 @@ export default function BeatsPage() {
 
                 <div className="mt-auto flex items-center justify-between pt-6 border-t border-white/5">
                   <span className="text-2xl font-black text-red-500">${beat.price}</span>
-                  <button className="flex items-center gap-2 px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-wide text-white transition-colors group-hover:bg-red-600 group-hover:border-red-600">
+                  <button
+                    onClick={() => handlePurchase(beat)}
+                    className="flex items-center gap-2 px-6 
+                  py-2.5 bg-white/5 hover:bg-white/10 
+                  border border-white/10 rounded-lg 
+                  text-xs font-bold uppercase tracking-wide 
+                  text-white transition-colors group-hover:bg-red-600 
+                  group-hover:border-red-60 cursor-pointer">
                     <ShoppingCart size={14} />
                     {tBeats('purchase')}
                   </button>

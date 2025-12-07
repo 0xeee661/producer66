@@ -1,0 +1,301 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔴 POR QUÉ CLERK NO EJECUTA TU WEBHOOK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PREGUNTA: "Cuando alguien hace sign up, no se ejecuta el endpoint"
+
+RESPUESTA: Correcto. Esto es lo que está pasando:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ❌ EL PROBLEMA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Cuando alguien se registra:
+
+  1. Usuario → Clerk.com ✅ (Esto funciona)
+  2. Clerk crea el usuario ✅ (Esto funciona)
+  3. Clerk intenta enviar webhook → ❌ NO SABE A DÓNDE
+  4. Tu código NUNCA se ejecuta ❌
+  5. NO hay logs ❌
+  6. NO se guarda en Supabase ❌
+
+¿Por qué Clerk no sabe a dónde enviar?
+  → Porque NO has configurado el webhook endpoint en Clerk Dashboard
+
+¿Por qué no puedes usar localhost:3000?
+  → Porque Clerk está en INTERNET, no en tu computadora
+  → Clerk NO puede acceder a http://localhost:3000
+  → Necesitas una URL PÚBLICA
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ SOLUCIÓN: EXPONER TU APP A INTERNET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Tienes 2 opciones:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPCIÓN A: NGROK (Para desarrollo local) 🏗️
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ngrok crea un "túnel" que expone tu localhost a internet.
+
+┌─────────────┐
+│   CLERK     │  (En internet)
+│ (Internet)  │
+└──────┬──────┘
+       │
+       │ Envía webhook
+       ▼
+┌─────────────┐
+│   NGROK     │  https://xxxx.ngrok-free.app
+│   (Túnel)   │
+└──────┬──────┘
+       │
+       │ Reenvía a
+       ▼
+┌─────────────┐
+│ LOCALHOST   │  http://localhost:3000
+│  (Tu Mac)   │
+└─────────────┘
+
+PASOS:
+
+1. Instalar ngrok:
+   
+   brew install ngrok
+
+2. Iniciar tu app (Terminal 1):
+   
+   cd /Users/esauguerra/Desktop/thundev/producer66
+   npm run dev
+   
+   Espera: ✓ Ready on http://localhost:3000
+
+3. Iniciar ngrok (Terminal 2 - NUEVA):
+   
+   ngrok http 3000
+
+4. Ngrok te mostrará algo como:
+
+   ┌──────────────────────────────────────────┐
+   │ Session Status    online                 │
+   │ Forwarding        https://a1b2-c3.ngrok-free.app → http://localhost:3000
+   └──────────────────────────────────────────┘
+
+5. COPIA esa URL de ngrok
+   Ejemplo: https://a1b2-c3-d4.ngrok-free.app
+
+6. Ve a Clerk Dashboard:
+   https://dashboard.clerk.com/
+
+7. Selecciona tu aplicación
+
+8. Click en "Webhooks" (menú lateral izquierdo)
+
+9. Click en "+ Add Endpoint" (o "Create")
+
+10. En "Endpoint URL", pega:
+    
+    https://a1b2-c3-d4.ngrok-free.app/api/webhooks/clerk
+    
+    ⚠️ IMPORTANTE: Agrega /api/webhooks/clerk al final
+
+11. En "Subscribe to events", selecciona:
+    ✅ user.created
+    ✅ user.updated
+
+12. Click en "Create"
+
+13. Clerk te mostrará un "Signing Secret"
+    Se ve como: whsec_xxxxxxxxxxxxx
+
+14. COPIA ese secret
+
+15. Abre .env.local en tu proyecto
+
+16. Verifica que tengas (o agrégalo):
+    
+    CLERK_WEBHOOK_SECRET=whsec_el_secret_que_copiaste
+
+17. Si lo actualizaste, REINICIA el servidor:
+    - En Terminal 1, presiona Ctrl+C
+    - Ejecuta: npm run dev
+
+18. ¡LISTO! Ahora prueba registrando un NUEVO usuario
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPCIÓN B: DESPLEGAR EN VERCEL (Producción) 🚀
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Si ya tienes tu app en Vercel (o quieres desplegarla):
+
+1. Despliega a Vercel:
+   
+   vercel --prod
+
+2. Vercel te dará una URL como:
+   https://tu-app.vercel.app
+
+3. Ve a Clerk Dashboard → Webhooks → Add Endpoint
+
+4. URL del endpoint:
+   https://tu-app.vercel.app/api/webhooks/clerk
+
+5. Selecciona eventos: user.created, user.updated
+
+6. Copia el "Signing Secret"
+
+7. Ve a Vercel Dashboard → Tu proyecto → Settings → Environment Variables
+
+8. Agrega:
+   Name: CLERK_WEBHOOK_SECRET
+   Value: whsec_xxxxx
+
+9. Redeploy tu app
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🧪 CÓMO PROBAR QUE FUNCIONA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de configurar el webhook:
+
+MÉTODO 1: Enviar evento de prueba desde Clerk
+----------------------------------------------
+1. Ve a Clerk Dashboard → Webhooks
+2. Click en tu endpoint
+3. Pestaña "Testing" o "Test"
+4. Click "Send example"
+5. Mira la terminal donde corre npm run dev
+6. Deberías ver:
+   
+   🚀 WEBHOOK CLERK - INICIO DE EJECUCIÓN
+   ✅ Webhook verificado correctamente
+   📨 Tipo de evento: user.created
+   ...
+
+MÉTODO 2: Registrar un usuario real
+------------------------------------
+1. CIERRA SESIÓN si estás logueado
+2. Ve a tu app: http://localhost:3000/sign-up (con ngrok)
+   O: https://tu-app.vercel.app/sign-up (producción)
+3. Regístrate con un EMAIL NUEVO (uno que NUNCA hayas usado)
+4. Completa el registro
+5. Mira la terminal donde corre npm run dev
+6. Deberías ver los logs del webhook
+7. Ve a Supabase → clients table
+8. El usuario debe estar ahí
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ❓ PREGUNTAS FRECUENTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+P: ¿Por qué necesito ngrok?
+R: Porque Clerk está en internet y tu localhost no es accesible
+   desde internet. ngrok crea un "túnel" público.
+
+P: ¿La URL de ngrok cambia cada vez?
+R: Sí, con ngrok gratuito la URL cambia cada vez que lo reinicias.
+   Tendrás que actualizar el webhook en Clerk cada vez.
+   Opciones:
+   - Pagar por ngrok (URL fija)
+   - Usar Vercel (URL permanente)
+
+P: ¿Puedo probar sin ngrok?
+R: No. Clerk NECESITA una URL pública. No hay otra manera en local.
+
+P: Ya registré usuarios antes, ¿se guardarán?
+R: No. Solo los NUEVOS registros (después de configurar webhook)
+   se guardarán. Los registros anteriores no se retroactivan.
+
+P: ¿Cómo sé si el webhook está configurado?
+R: Ve a Clerk Dashboard → Webhooks
+   Si ves un endpoint listado = configurado
+   Si está vacío = NO configurado
+
+P: El webhook da error 400 o 500
+R: Lee los logs en tu terminal. Te dirán el error exacto.
+   Errores comunes:
+   - 400 "Error verifying webhook" = CLERK_WEBHOOK_SECRET incorrecto
+   - 500 = Error de Supabase (credenciales o tabla)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🎯 CHECKLIST COMPLETO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Antes de registrar un usuario, verifica:
+
+□ Servidor corriendo (npm run dev)
+□ Ngrok corriendo (ngrok http 3000) - si es desarrollo local
+□ Webhook configurado en Clerk Dashboard
+□ URL del webhook correcta (incluye /api/webhooks/clerk)
+□ Eventos seleccionados (user.created, user.updated)
+□ CLERK_WEBHOOK_SECRET en .env.local
+□ Servidor reiniciado después de agregar el secret
+□ Terminal del servidor visible (para ver logs)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📋 COMANDOS RÁPIDOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Terminal 1: Servidor
+npm run dev
+
+# Terminal 2: ngrok (desarrollo local)
+ngrok http 3000
+
+# Verificar que todo está listo
+./quick-check.sh
+
+# Ver esta guía
+cat CLERK_NO_EJECUTA_WEBHOOK.txt
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🎬 FLUJO COMPLETO (DESARROLLO LOCAL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Terminal 1:
+  cd /Users/esauguerra/Desktop/thundev/producer66
+  npm run dev
+  [DEJAR ABIERTA - AQUÍ APARECEN LOS LOGS]
+
+Terminal 2:
+  ngrok http 3000
+  [COPIAR LA URL QUE MUESTRA]
+
+Navegador:
+  1. https://dashboard.clerk.com/
+  2. Tu app → Webhooks → + Add Endpoint
+  3. URL: https://TU-URL-NGROK.ngrok-free.app/api/webhooks/clerk
+  4. Events: user.created, user.updated
+  5. Create
+  6. Copiar Signing Secret
+
+Editor (VS Code):
+  .env.local:
+    CLERK_WEBHOOK_SECRET=whsec_el_secret
+
+Terminal 1 (Reiniciar):
+  Ctrl+C
+  npm run dev
+
+Probar:
+  http://localhost:3000/sign-up
+  Registrar con email NUEVO
+
+Ver logs:
+  Mira Terminal 1 → Deberías ver 🚀 WEBHOOK CLERK...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ RESUMEN DE 3 PUNTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. CLERK NO EJECUTA TU WEBHOOK
+   → Porque no está configurado en Clerk Dashboard
+
+2. LOCALHOST NO FUNCIONA
+   → Clerk necesita URL pública (ngrok o Vercel)
+
+3. DESPUÉS DE CONFIGURAR
+   → Registra un NUEVO usuario y verás los logs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

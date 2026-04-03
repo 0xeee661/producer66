@@ -1,20 +1,17 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getDB } from '@/db/data-source';
+import { BeatEntity, type Beat } from '@/db/entities/Beat';
 
 // GET /api/beats - Obtener todos los beats
 export async function GET() {
-  console.log("HERE GET!!")
-
   try {
-    const { data: beats, error } = await supabase
-      .from('beats')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(10);
+    const db = await getDB();
+    const repo = db.getRepository<Beat>(BeatEntity);
 
-    if (error) {
-      throw error;
-    }
+    const beats = await repo.find({
+      order: { created_at: 'DESC' },
+      take: 10,
+    });
 
     return NextResponse.json(beats);
   } catch (error) {
@@ -28,12 +25,9 @@ export async function GET() {
 
 // POST /api/beats - Crear un nuevo beat
 export async function POST(request: Request) {
-  console.log("HERE POST!!")
-
   try {
     const data = await request.json();
 
-    // Validar datos
     if (!data.title || !data.bpm || !data.key || !data.price || !data.tag) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -41,22 +35,19 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data: beat, error } = await supabase
-      .from('beats')
-      .insert({
+    const db = await getDB();
+    const repo = db.getRepository<Beat>(BeatEntity);
+
+    const beat = await repo.save(
+      repo.create({
         title: data.title,
         bpm: parseInt(data.bpm),
         key: data.key,
         price: parseFloat(data.price),
         tag: data.tag,
-        audioUrl: data.audioUrl || null
+        audioUrl: data.audioUrl || null,
       })
-      .select()
-      .single();
-
-    if (error) {
-      throw error;
-    }
+    );
 
     return NextResponse.json(beat, { status: 201 });
   } catch (error) {

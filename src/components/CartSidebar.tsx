@@ -17,11 +17,11 @@ const CartSidebar = () => {
       />
 
       <div className="absolute inset-y-0 right-0 flex max-w-full pl-10">
-        <div className="w-screen max-w-md transform transition-transform duration-500 ease-in-out bg-zinc-900 border-l border-zinc-800 shadow-2xl flex flex-col h-full">
+        <div className="w-screen max-w-[92vw] sm:max-w-md transform transition-transform duration-500 ease-in-out bg-[#0A0A0C] border-l border-white/10 shadow-2xl flex flex-col h-full">
 
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-6 sm:px-6 border-b border-zinc-800">
-            <h2 className="text-lg font-medium text-white flex items-center gap-2">
+          <div className="flex items-center justify-between px-4 py-6 sm:px-6 border-b border-white/10">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2 font-[family-name:var(--font-heading)] uppercase">
               <ShoppingBag className="w-5 h-5" />
               Your Cart ({items.length})
             </h2>
@@ -43,7 +43,7 @@ const CartSidebar = () => {
                 <p className="text-lg">Your cart is empty</p>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="text-indigo-400 hover:text-indigo-300 text-sm font-medium"
+                  className="text-white hover:text-[#F2EFDD] text-sm font-medium"
                 >
                   Continue Shopping &rarr;
                 </button>
@@ -53,7 +53,7 @@ const CartSidebar = () => {
                 {items.map((item) => (
                   <li key={item.id} className="flex py-2">
                     {item.image && (
-                      <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-md border border-zinc-800">
+                      <div className="h-20 w-20 flex-shrink-0 overflow-hidden rounded-xl border-2 border-white/10">
                         <img
                           src={item.image}
                           alt={item.title}
@@ -76,7 +76,7 @@ const CartSidebar = () => {
                         <button
                           type="button"
                           onClick={() => removeFromCart(item.id)}
-                          className="font-medium text-red-400 hover:text-red-300 flex items-center gap-1 transition-colors"
+                          className="font-medium text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
                           Remove
@@ -91,7 +91,7 @@ const CartSidebar = () => {
 
           {/* Footer */}
           {items.length > 0 && (
-            <div className="border-t border-zinc-800 px-4 py-6 sm:px-6 bg-zinc-900/50">
+            <div className="border-t border-white/10 px-4 py-6 sm:px-6">
               <div className="flex justify-between text-base font-medium text-white mb-4">
                 <p>Subtotal</p>
                 <p>${cartTotal.toFixed(2)}</p>
@@ -100,19 +100,16 @@ const CartSidebar = () => {
                 Shipping and taxes calculated at checkout.
               </p>
               <div className="space-y-3">
-
-
-
                 <Link
                   href="/checkout"
                   onClick={() => setIsCartOpen(false)}
-                  className="w-full flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 transition-colors"
+                  className="btn-primary w-full flex items-center justify-center"
                 >
                   Checkout
                 </Link>
                 <button
                   onClick={clearCart}
-                  className="w-full flex items-center justify-center rounded-md border border-zinc-700 bg-transparent px-6 py-3 text-base font-medium text-zinc-300 shadow-sm hover:bg-zinc-800 transition-colors"
+                  className="btn-secondary w-full flex items-center justify-center"
                 >
                   Clear Cart
                 </button>
@@ -122,7 +119,7 @@ const CartSidebar = () => {
                   or{' '}
                   <button
                     type="button"
-                    className="font-medium text-indigo-400 hover:text-indigo-300"
+                    className="font-medium text-white hover:text-[#F2EFDD]"
                     onClick={() => setIsCartOpen(false)}
                   >
                     Continue Shopping

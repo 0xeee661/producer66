@@ -47,7 +47,7 @@ export default async function ProfilePage() {
               </p>
               <p className="text-xs text-zinc-400 font-mono flex items-center gap-2">
                 <span className="text-zinc-500">Clerk ID:</span>
-                <span className="text-zinc-300">{dbClient.clerk_id}</span>
+                <span className="text-zinc-300">{dbClient.clerkId}</span>
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default async function ProfilePage() {
                 </div>
               )}
               <h2 className="text-xl font-bold">
-                {dbClient.first_name} {dbClient.second_name}
+                {dbClient.firstName} {dbClient.secondName}
               </h2>
               <p className="text-zinc-500">@{dbClient.username || 'user'}</p>
             </div>

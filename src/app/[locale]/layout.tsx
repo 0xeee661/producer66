@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -10,14 +10,33 @@ import { ClerkProvider } from '@clerk/nextjs';
 import UserSync from '@/components/UserSync';
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const robotoSlab = localFont({
+  src: [
+    {
+      path: "../../../public/fonts/roboto-slab/roboto-slab-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../../public/fonts/roboto-slab/roboto-slab-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-body",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const fjallaOne = localFont({
+  src: [
+    {
+      path: "../../../public/fonts/fjalla-one/fjalla-one-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-heading",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -38,21 +57,18 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
 
-  // Enable static rendering BEFORE getting messages
   setRequestLocale(locale);
 
-  // Providing all messages to the client
   const messages = await getMessages();
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${robotoSlab.variable} ${fjallaOne.variable} antialiased`}
         suppressHydrationWarning
       >
         <ClerkProvider>

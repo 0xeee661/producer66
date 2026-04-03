@@ -1,19 +1,71 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #020202;
+  --foreground: #F9F9F9;
+  --accent-cream: #F2EFDD;
+  --accent-red: #DC2626;
+  --surface: #0A0A0C;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --radius-button: 40px;
+  --radius-card: 12px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), serif;
+  font-weight: 400;
+  font-style: normal;
   overflow-x: hidden;
+  letter-spacing: 0.06rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .btn-primary {
+    background: var(--accent-cream);
+    color: #020202;
+    border: 2px solid #020202;
+    border-radius: var(--radius-button);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0px 2px 0px #020202;
+    transition: all 0.2s;
+    padding: 12px 32px;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    transform: translateY(1px);
+    box-shadow: 0px 1px 0px #020202;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: var(--radius-button);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0px 2px 0px #FFFFFF;
+    transition: all 0.2s;
+    padding: 12px 32px;
+    cursor: pointer;
+  }
+  .btn-secondary:hover {
+    transform: translateY(1px);
+    box-shadow: 0px 1px 0px #FFFFFF;
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Quote } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -11,42 +12,42 @@ export default function Testimonials() {
       text: t('reviews.1'),
       author: "Marcus Johnson",
       role: "R&B Artist",
-      initials: "MJ"
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
     },
     {
       text: t('reviews.2'),
       author: "Sarah Davis",
       role: "Pop Singer",
-      initials: "SD"
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80"
     },
     {
       text: t('reviews.3'),
       author: "DJ Flexx",
       role: "Music Producer",
-      initials: "DF"
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80"
     }
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-[#050507] to-[#020203]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 bg-[#020202]">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-6">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F9F9F9] mb-4 font-[family-name:var(--font-heading)] uppercase">
             {t('title')}
           </h2>
-          <p className="text-gray-400 text-sm font-medium">
+          <p className="text-gray-400 text-sm">
             {t('subtitle')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {reviews.map((review, idx) => (
-            <div key={idx} className="p-8 bg-[#0a0a0c] border border-white/5 rounded-2xl relative">
-              <Quote className="text-red-900/40 absolute top-6 left-6" size={48} />
+            <div key={idx} className="p-8 bg-[#0A0A0C] rounded-xl relative">
+              <Quote className="text-white/5 absolute top-6 left-6" size={48} />
 
               <div className="flex gap-1 mb-6 relative z-10">
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} className="text-red-600 text-xs">★</span>
+                  <span key={star} className="text-[#F2EFDD] text-xs">★</span>
                 ))}
               </div>
 
@@ -55,8 +56,13 @@ export default function Testimonials() {
               </p>
 
               <div className="flex items-center gap-4 border-t border-white/5 pt-6">
-                <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs">
-                  {review.initials}
+                <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0">
+                  <Image
+                    src={review.avatar}
+                    alt={review.author}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div>
                   <div className="text-white font-bold text-sm">{review.author}</div>

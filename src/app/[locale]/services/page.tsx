@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Music2, Mic2, Headphones, Disc, Clock, Check, Calendar } from "lucide-react";
@@ -23,7 +24,7 @@ export default function ServicesPage() {
         "Mix-ready delivery"
       ],
       price: 500,
-      iconBg: "bg-red-600"
+      image: "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800&q=80"
     },
     {
       icon: Mic2,
@@ -38,7 +39,7 @@ export default function ServicesPage() {
         "Effects processing"
       ],
       price: 300,
-      iconBg: "bg-red-600"
+      image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80"
     },
     {
       icon: Headphones,
@@ -53,7 +54,7 @@ export default function ServicesPage() {
         "Unlimited revisions"
       ],
       price: 800,
-      iconBg: "bg-red-600"
+      image: "https://images.unsplash.com/photo-1563330232-57114bb0823c?w=800&q=80"
     },
     {
       icon: Disc,
@@ -68,42 +69,59 @@ export default function ServicesPage() {
         "Fast turnaround"
       ],
       price: 150,
-      iconBg: "bg-red-600"
+      image: "https://images.unsplash.com/photo-1571974599782-87624638275e?w=800&q=80"
     }
   ];
 
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-red-600 selection:text-white">
+    <main className="min-h-screen bg-[#020202] text-[#F9F9F9] selection:bg-[#F2EFDD] selection:text-black">
       <Navbar />
 
-      <div className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-900/20 border border-red-900/30 text-[10px] font-bold tracking-widest text-red-500 mb-6 uppercase">
+      {/* Hero Banner */}
+      <div className="relative h-[30vh] sm:h-[35vh] md:h-[40vh] min-h-[250px] sm:min-h-[300px] flex items-center justify-center">
+        <Image
+          src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&q=80"
+          alt="Studio background"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 text-center px-4 sm:px-6 pt-24">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-[10px] font-bold tracking-widest text-[#F9F9F9] mb-6 uppercase">
             <Calendar size={12} />
             Professional Services
           </div>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#F9F9F9] mb-4 font-[family-name:var(--font-heading)] uppercase">
             {t('title')}
           </h1>
-          <p className="text-gray-400 text-lg font-medium max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </div>
+      </div>
 
+      <div className="pb-20 px-4 sm:px-6 max-w-[1500px] mx-auto pt-16">
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {services.map((service, idx) => (
-            <div key={idx} className="group bg-[#0a0a0c] border border-white/10 rounded-2xl p-8 hover:border-red-600/30 transition-all duration-300">
-              {/* Header */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 ${service.iconBg} rounded-lg flex items-center justify-center text-white shadow-lg shadow-red-900/30`}>
-                    <service.icon size={28} />
+            <div key={idx} className="group bg-[#0A0A0C] rounded-xl overflow-hidden hover:bg-[#111113] transition-colors">
+              {/* Service Image */}
+              <div className="relative h-40 sm:h-48 md:h-52 overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                  <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-white">
+                    <service.icon size={24} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-1">{service.title}</h3>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <h3 className="text-xl font-bold text-white font-[family-name:var(--font-heading)]">{service.title}</h3>
+                    <div className="flex items-center gap-2 text-xs text-gray-300">
                       <Clock size={12} />
                       <span>{service.duration}</span>
                     </div>
@@ -111,33 +129,35 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                {service.description}
-              </p>
+              <div className="p-4 sm:p-6 md:p-8">
+                {/* Description */}
+                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                  {service.description}
+                </p>
 
-              {/* Features */}
-              <ul className="space-y-3 mb-8">
-                {service.features.map((feature, featureIdx) => (
-                  <li key={featureIdx} className="flex items-center gap-3 text-sm text-gray-300">
-                    <div className="w-5 h-5 rounded bg-red-600/10 flex items-center justify-center flex-shrink-0">
-                      <Check size={14} className="text-red-500" />
-                    </div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                {/* Features */}
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, featureIdx) => (
+                    <li key={featureIdx} className="flex items-center gap-3 text-sm text-gray-300">
+                      <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center flex-shrink-0">
+                        <Check size={14} className="text-[#F2EFDD]" />
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Price & CTA */}
-              <div className="flex items-center justify-between pt-6 border-t border-white/10">
-                <div>
-                  <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-1">{t('startingAt')}</div>
-                  <div className="text-3xl font-black text-red-500">${service.price}</div>
+                {/* Price & CTA */}
+                <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                  <div>
+                    <div className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-1">{t('startingAt')}</div>
+                    <div className="text-3xl font-bold text-[#F9F9F9] font-[family-name:var(--font-heading)]">${service.price}</div>
+                  </div>
+                  <button className="btn-primary flex items-center gap-2">
+                    <Calendar size={14} />
+                    {t('bookNow')}
+                  </button>
                 </div>
-                <button className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold uppercase tracking-widest transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg shadow-red-900/30">
-                  <Calendar size={14} />
-                  {t('bookNow')}
-                </button>
               </div>
             </div>
           ))}

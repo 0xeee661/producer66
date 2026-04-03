@@ -28,7 +28,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ beat, className = "",
   return (
     <button
       onClick={handleClick}
-      className={`flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm cursor-pointer ${className}`}
+      className={`flex items-center justify-center gap-2 bg-[#F2EFDD] text-[#020202] border-2 border-[#020202] rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wide shadow-[0_2px_0_#020202] hover:translate-y-px hover:shadow-[0_1px_0_#020202] transition-all cursor-pointer ${className}`}
     >
       {children ? (
         children

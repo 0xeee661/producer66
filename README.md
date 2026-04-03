@@ -24,17 +24,6 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 **If users are not being saved to the database**, it's because the Clerk webhook is not configured. Follow these steps:
 
-### Quick Diagnosis
-
-Run the diagnostic script:
-```bash
-./diagnose.sh
-```
-
-### Full Configuration Guide
-
-See **[WEBHOOK_DEBUGGING.md](./WEBHOOK_DEBUGGING.md)** for complete instructions.
-
 ### Quick Setup (Production)
 
 1. Deploy your app to Vercel

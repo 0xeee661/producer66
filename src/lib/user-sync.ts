@@ -1,5 +1,6 @@
 import { currentUser } from '@clerk/nextjs/server';
-import { supabase } from '@/lib/supabase';
+import { getDB } from '@/db/data-source';
+import { ClientEntity, type Client } from '@/db/entities/Client';
 
 function getRegistrationType(clerkUser: any): 'email' | 'google' {
   const hasGoogleAccount = clerkUser.externalAccounts?.some(
@@ -13,59 +14,47 @@ export async function syncCurrentUser() {
     const clerkUser = await currentUser();
 
     if (!clerkUser) {
-      console.log('❌ No hay usuario de Clerk');
       return null;
     }
 
     const email = clerkUser.emailAddresses[0]?.emailAddress;
 
     if (!email) {
-      console.error('❌ Usuario no tiene email');
       return null;
     }
 
     const registrationType = getRegistrationType(clerkUser);
 
-    console.log(`🔄 Sincronizando usuario en Supabase: ${email}`);
+    const db = await getDB();
+    const repo = db.getRepository<Client>(ClientEntity);
 
-    // Mapeo a columnas de la tabla clients
+    // Lookup by clerkId first (more reliable), fallback to email
+    const existing = await repo.findOneBy({ clerkId: clerkUser.id })
+      || await repo.findOneBy({ email });
+
     const userData = {
-      email: email,
+      email,
+      clerkId: clerkUser.id,
       registration_type: registrationType,
-      firstName: clerkUser.firstName, // campo correcto en DB
-      secondName: clerkUser.lastName, // campo correcto en DB
+      firstName: clerkUser.firstName,
+      secondName: clerkUser.lastName,
+      imageUrl: clerkUser.imageUrl,
+      username: clerkUser.username,
     };
 
-    // Verificamos si existe antes para loguear correctamente
-    const { data: existing } = await supabase
-      .from('clients')
-      .select('id')
-      .eq('email', email)
-      .single();
+    let client: Client;
 
-    const isNewUser = !existing;
-
-    const { data, error } = await supabase
-      .from('clients')
-      .upsert(userData, { onConflict: 'email' })
-      .select()
-      .single();
-
-    if (error) {
-      console.error('❌ Error Supabase:', error.message);
-      return null;
-    }
-
-    if (isNewUser) {
-      console.log(`✨ USUARIO NUEVO CREADO: ${email} (ID: ${data.id})`);
+    if (existing) {
+      await repo.update({ id: existing.id }, userData);
+      client = { ...existing, ...userData };
     } else {
-      console.log(`🔄 Usuario existente actualizado: ${email} (ID: ${data.id})`);
+      client = await repo.save(repo.create(userData));
     }
 
-    return data;
+    return client;
 
   } catch (error) {
-    console.error('❌ Error general:', error);
+    console.error('Error syncCurrentUser:', error);
     return null;
   }
 }
@@ -79,20 +68,20 @@ export async function getCurrentClient() {
     const email = clerkUser.emailAddresses[0]?.emailAddress;
     if (!email) return null;
 
-    const { data, error } = await supabase
-      .from('clients')
-      .select('*')
-      .eq('email', email)
-      .single();
+    const db = await getDB();
+    const repo = db.getRepository<Client>(ClientEntity);
 
-    if (error) {
-      console.error('Error fetching client:', error.message);
+    // Lookup by clerkId first, fallback to email
+    const client = await repo.findOneBy({ clerkId: clerkUser.id })
+      || await repo.findOneBy({ email });
+
+    if (!client) {
       return null;
     }
 
-    return data;
+    return client;
   } catch (error) {
-    console.error('Error getting current client:', error);
+    console.error('Error getCurrentClient:', error);
     return null;
   }
 }

@@ -4,7 +4,12 @@
     "beats": "Beats",
     "services": "Servizi",
     "portfolio": "Portfolio",
-    "bookNow": "Prenota Ora"
+    "contact": "Contatto",
+    "bookNow": "Prenota Ora",
+    "panel": "Pannello"
+  },
+  "announcement": {
+    "text": "DOWNLOAD GRATUITO — Nuovo Trap Sound Kit Disponibile"
   },
   "hero": {
     "title": "PRODUTTORE",
@@ -20,6 +25,10 @@
     "price": "Prezzo",
     "play": "Riproduci",
     "purchase": "Acquista"
+  },
+  "featured": {
+    "title": "Tutti i Prodotti",
+    "viewAll": "Vedi Tutto"
   },
   "services": {
     "title": "Servizi",
@@ -47,6 +56,19 @@
     "followMe": "Seguimi",
     "contact": "Contatto"
   },
+  "newsletter": {
+    "title": "Iscriviti",
+    "description": "Ricevi gli ultimi beat e offerte esclusive.",
+    "placeholder": "Indirizzo email",
+    "success": "Iscrizione riuscita!",
+    "error": "Qualcosa è andato storto. Riprova."
+  },
+  "search": {
+    "placeholder": "Cerca beats...",
+    "searching": "Ricerca in corso...",
+    "noResults": "Nessun risultato trovato.",
+    "hint": "Digita almeno 2 caratteri per cercare."
+  },
   "testimonials": {
     "title": "Cosa dicono gli artisti",
     "subtitle": "Non fidarti solo della nostra parola. Ascolta gli artisti con cui abbiamo lavorato.",
@@ -56,12 +78,44 @@
       "3": "I migliori beat del gioco, senza dubbio. Ogni strumentale ha un'atmosfera unica e gli stem sono sempre perfettamente organizzati. Un sogno lavorare con questo produttore."
     }
   },
+  "contactPage": {
+    "title": "Contatto",
+    "subtitle": "Hai una domanda o vuoi lavorare insieme? Contattaci.",
+    "formTitle": "Modulo di Contatto",
+    "name": "Nome",
+    "namePlaceholder": "Il tuo nome",
+    "email": "Email",
+    "emailPlaceholder": "tua@email.com",
+    "phone": "Telefono",
+    "phonePlaceholder": "+39 000 000 0000",
+    "message": "Messaggio",
+    "messagePlaceholder": "Raccontaci del tuo progetto...",
+    "send": "Invia",
+    "sending": "Invio in corso...",
+    "successTitle": "Messaggio Inviato!",
+    "successMessage": "Ti risponderemo il prima possibile.",
+    "errorMessage": "Qualcosa è andato storto. Riprova."
+  },
   "beatsPage": {
     "title": "Sfoglia Beats",
     "subtitle": "Beats di alta qualità per il tuo prossimo progetto. Download istantaneo e uso illimitato.",
     "searchPlaceholder": "Cerca beats per nome...",
     "allGenres": "Tutti i generi",
-    "showing": "Mostrando {count} beats"
+    "showing": "Mostrando {count} beats",
+    "sortBy": "Ordina per",
+    "featured": "In evidenza",
+    "bestSelling": "Più venduti",
+    "nameAZ": "Nome A-Z",
+    "nameZA": "Nome Z-A",
+    "priceLow": "Prezzo: dal più basso",
+    "priceHigh": "Prezzo: dal più alto",
+    "newest": "Più recenti",
+    "oldest": "Più vecchi",
+    "priceRange": "Fascia di Prezzo",
+    "minPrice": "Min",
+    "maxPrice": "Max",
+    "clearFilters": "Pulisci Filtri",
+    "filterSort": "Filtra e Ordina"
   },
   "servicesPage": {
     "title": "I Nostri Servizi",
@@ -99,5 +153,30 @@
       "cvc": "È richiesto un CVC valido"
     },
     "estimatedDelivery": "Consegna Stimata: Download Immediato"
+  },
+  "profile": {
+    "title": "Il Mio Profilo",
+    "subtitle": "Gestisci il tuo account e visualizza i tuoi ordini",
+    "synced": "Dati sincronizzati dal Database",
+    "notSynced": "Utente non trovato nel Database",
+    "id": "ID Utente",
+    "email": "Email",
+    "name": "Nome",
+    "username": "Nome utente",
+    "joined": "Iscritto",
+    "dbStatus": "Stato Database",
+    "dbConnected": "Connesso e Sincronizzato",
+    "recentOrders": "Ordini Recenti",
+    "noOrders": "Nessun ordine trovato"
+  },
+  "panel": {
+    "title": "Pannello di Amministrazione",
+    "subtitle": "Gestisci la tua piattaforma",
+    "users": "Utenti",
+    "usersDesc": "Gestire utenti registrati e ruoli",
+    "beats": "Beats",
+    "beatsDesc": "Aggiungere, modificare o rimuovere beats",
+    "orders": "Ordini",
+    "ordersDesc": "Visualizzare e gestire ordini"
   }
 }

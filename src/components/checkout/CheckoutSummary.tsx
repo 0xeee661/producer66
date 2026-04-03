@@ -60,8 +60,8 @@ const CheckoutSummary: React.FC<CheckoutSummaryProps> = ({ onPlaceOrder, isProce
         </div>
 
         <div className="border-t border-zinc-200 pt-4 mt-2 flex justify-between items-center">
-          <span className="text-lg font-bold text-red-700">{t('orderTotal')}:</span>
-          <span className="text-lg font-bold text-red-700">${cartTotal.toFixed(2)}</span>
+          <span className="text-lg font-bold text-zinc-900">{t('orderTotal')}:</span>
+          <span className="text-lg font-bold text-zinc-900">${cartTotal.toFixed(2)}</span>
         </div>
       </div>
 

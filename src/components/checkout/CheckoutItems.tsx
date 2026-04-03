@@ -30,7 +30,7 @@ const CheckoutItems = () => {
                   <span className="text-xs font-bold bg-orange-100 text-orange-800 px-1 rounded">Best Seller</span>
                 </div>
               </div>
-              <p className="font-bold text-red-700">${item.price.toFixed(2)}</p>
+              <p className="font-bold text-zinc-900">${item.price.toFixed(2)}</p>
             </div>
 
             <div className="flex items-center gap-4 mt-4">

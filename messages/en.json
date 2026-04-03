@@ -4,7 +4,12 @@
     "beats": "Beats",
     "services": "Services",
     "portfolio": "Portfolio",
-    "bookNow": "Book Now"
+    "contact": "Contact",
+    "bookNow": "Book Now",
+    "panel": "Panel"
+  },
+  "announcement": {
+    "text": "FREE DOWNLOAD — New Trap Sound Kit Available Now"
   },
   "hero": {
     "title": "PRODUCER",
@@ -20,6 +25,10 @@
     "price": "Price",
     "play": "Play",
     "purchase": "Purchase"
+  },
+  "featured": {
+    "title": "All Products",
+    "viewAll": "View All"
   },
   "services": {
     "title": "Services",
@@ -47,6 +56,19 @@
     "followMe": "Follow Me",
     "contact": "Contact"
   },
+  "newsletter": {
+    "title": "Subscribe",
+    "description": "Get the latest beats and exclusive offers.",
+    "placeholder": "Email address",
+    "success": "Subscribed successfully!",
+    "error": "Something went wrong. Try again."
+  },
+  "search": {
+    "placeholder": "Search beats...",
+    "searching": "Searching...",
+    "noResults": "No results found.",
+    "hint": "Type at least 2 characters to search."
+  },
   "testimonials": {
     "title": "What Artists Say",
     "subtitle": "Don't just take our word for it. Hear from the artists we've worked with.",
@@ -56,12 +78,44 @@
       "3": "The best beats in the game, hands down. Every instrumental has a unique vibe and the stems are always perfectly organized. A producer's dream to work with."
     }
   },
+  "contactPage": {
+    "title": "Contact",
+    "subtitle": "Have a question or want to work together? Get in touch.",
+    "formTitle": "Contact Form",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "phone": "Phone",
+    "phonePlaceholder": "+1 (555) 000-0000",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your project...",
+    "send": "Send",
+    "sending": "Sending...",
+    "successTitle": "Message Sent!",
+    "successMessage": "We'll get back to you as soon as possible.",
+    "errorMessage": "Something went wrong. Please try again."
+  },
   "beatsPage": {
     "title": "Browse Beats",
     "subtitle": "High-quality beats for your next project. Instant download and unlimited use.",
     "searchPlaceholder": "Search beats by name...",
     "allGenres": "All Genres",
-    "showing": "Showing {count} beats"
+    "showing": "Showing {count} beats",
+    "sortBy": "Sort by",
+    "featured": "Featured",
+    "bestSelling": "Best Selling",
+    "nameAZ": "Name A-Z",
+    "nameZA": "Name Z-A",
+    "priceLow": "Price: Low to High",
+    "priceHigh": "Price: High to Low",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "priceRange": "Price Range",
+    "minPrice": "Min",
+    "maxPrice": "Max",
+    "clearFilters": "Clear Filters",
+    "filterSort": "Filter & Sort"
   },
   "servicesPage": {
     "title": "Our Services",
@@ -114,5 +168,15 @@
     "dbConnected": "Connected & Synced",
     "recentOrders": "Recent Orders",
     "noOrders": "No orders found"
+  },
+  "panel": {
+    "title": "Admin Panel",
+    "subtitle": "Manage your platform",
+    "users": "Users",
+    "usersDesc": "Manage registered users and roles",
+    "beats": "Beats",
+    "beatsDesc": "Add, edit, or remove beats",
+    "orders": "Orders",
+    "ordersDesc": "View and manage orders"
   }
 }
